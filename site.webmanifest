@@ -1,0 +1,13 @@
+{
+  "name": "Voweluable",
+  "short_name": "Voweluable",
+  "description": "A new free daily word game, every midnight",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0B1220",
+  "theme_color": "#E3B23C",
+  "icons": [
+    { "src": "favicon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "favicon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

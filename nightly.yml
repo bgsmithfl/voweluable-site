@@ -1,0 +1,42 @@
+name: Nightly archive + champion card
+on:
+  schedule:
+    # Target: 12:30 AM Eastern year-round. GitHub cron is UTC and ignores DST,
+    # so run twice; the off-season run just re-generates identical output
+    # and commits nothing.
+    - cron: '30 4 * * *'   # 04:30 UTC = 12:30 AM EDT (summer)
+    - cron: '30 5 * * *'   # 05:30 UTC = 12:30 AM EST (winter)
+  workflow_dispatch: {}     # manual "Run workflow" button (use for first backfill)
+permissions:
+  contents: write
+jobs:
+  nightly:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.12' }
+      - run: pip install pillow
+      - name: Fonts
+        run: |
+          mkdir -p fonts
+          sudo apt-get update -qq && sudo apt-get install -y -qq fonts-dejavu-core
+          cp /usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf fonts/
+          cp /usr/share/fonts/truetype/dejavu/DejaVuSansMono-Bold.ttf fonts/
+      - name: Generate archive pages + sitemap
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+        run: python scripts/archive_gen.py
+      - name: Generate champion card + post
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+        run: python scripts/daily_champion.py
+      - name: Commit (triggers Netlify deploy)
+        run: |
+          git config user.name "voweluable-bot"
+          git config user.email "bot@voweluable.com"
+          git add archive/ sitemap.xml output/
+          git diff --cached --quiet || git commit -m "Nightly: archive + card $(date -u +%F)"
+          git push

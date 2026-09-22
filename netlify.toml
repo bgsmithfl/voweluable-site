@@ -1,0 +1,10 @@
+# Netlify config: static site, no build step.
+# fonts/, scripts/, output/, .github/ are agent plumbing — never published.
+[build]
+  publish = "."
+  command = ""
+
+[[redirects]]
+  from = "/archive"
+  to = "/archive/"
+  status = 301
