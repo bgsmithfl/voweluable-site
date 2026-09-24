@@ -1889,6 +1889,10 @@
   const HARD_CONSONANTS = ['F','H','V','W','Y','K','J','X','Q','Z'];
   const VOWELS = ['A','E','I','O','U'];
   const VOWEL_COSTS = { A: 4.75, E: 5.75, I: 2.00, O: 2.50, U: 1.50 };  // v14: study-calibrated; E+A > $10 by design
+  // Pricing era stamp. BUMP whenever VOWEL_COSTS changes. Written on every
+  // score submission so the leaderboard can exclude scores played on a stale,
+  // outdated client running old pricing. 2 = "Tater Rule" flat pricing.
+  const RULES_VERSION = 2;
   let BUDGET = 10;
   const BASE_BUDGET = 10;
 
@@ -2529,7 +2533,8 @@
         cash_bonus_points: bonusPoints,
         combined_score: combinedScore,
         words_found: foundWords.map(w => w.word),
-        tile_emojis: getTileTypeEmojis()
+        tile_emojis: getTileTypeEmojis(),
+        rules_version: RULES_VERSION
       });
       if (insertError){
         resultText.textContent = "Couldn't save your score: " + formatSupaError(insertError);
@@ -2546,7 +2551,8 @@
           cash_bonus_points: bonusPoints,
           combined_score: combinedScore,
           words_found: foundWords.map(w => w.word),
-          tile_emojis: getTileTypeEmojis()
+          tile_emojis: getTileTypeEmojis(),
+          rules_version: RULES_VERSION
         })
         .eq('hand_number', hn)
         .eq('user_id', account.id);
