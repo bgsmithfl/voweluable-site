@@ -77,14 +77,18 @@
   }
   .wrap{max-width:650px; margin:0 auto; padding:24px 16px 0;}
   header{
-    display:flex;
-    align-items:center;
-    gap:14px;
-    padding:16px 16px;
-    background:var(--ink);
-    /* Keep the brand aligned with the centered content column on wide
-       screens; mobile is unaffected (block exceeds small viewports) */
+    display:block;
+    text-align:center;
+    padding:12px 16px 8px;
+    background:#000;
     max-width:650px;
+    margin:0 auto;
+  }
+  .brand-banner{
+    display:block;
+    width:100%;
+    max-width:600px;
+    height:auto;
     margin:0 auto;
   }
   /* Sister-game banner (Today in Hearts branding) */
@@ -134,20 +138,19 @@
   }
   /* Full-bleed bar so the background + border still span the page */
   .header-bar{
-    background:var(--ink);
+    background:#000;
     border-bottom:1px solid rgba(227,178,60,0.3);
     position:relative;
   }
   .header-meta{
-    position:absolute;
-    right:18px;
-    top:50%;
-    transform:translateY(-50%);
     display:flex;
     align-items:center;
+    justify-content:center;
     gap:12px;
     font-size:14px;
     color:#8fa0bd;
+    padding:0 16px 10px;
+    background:#000;
   }
   .player-pill{
     display:none;
@@ -886,11 +889,7 @@
 
 <div class="header-bar">
 <header>
-  <div class="brand-icon">$</div>
-  <div class="brand-text">
-    <div class="brand-word">VOWEL<span>UABLE</span></div>
-    <div class="brand-tagline">A NEW FREE DAILY WORD GAME, EVERY MIDNIGHT</div>
-  </div>
+  <img class="brand-banner" src="banner.png" alt="Voweluable — a new free daily word game where vowels cost money">
 </header>
 <div class="header-meta">
   <span id="hdrDate"></span>
@@ -2311,17 +2310,24 @@
   function buildShareText(){
     if (!lastOfficialResult) return '';
     const r = lastOfficialResult;
-    let scoreLine = '🏆 ' + r.score.toFixed(0) + ' pts';
+    // Spoiler-free "budget bar" — Voweluable's visual signature.
+    // Gold = Vowel Bucks spent on vowels, green = banked. Reveals no words.
+    const leftover = (typeof r.leftoverCash === 'number') ? r.leftoverCash : 0;
+    let spentSegs = Math.round(Math.max(0, 10 - leftover));
+    if (spentSegs < 0) spentSegs = 0;
+    if (spentSegs > 10) spentSegs = 10;
+    const bar = '🟨'.repeat(spentSegs) + '🟩'.repeat(10 - spentSegs);
+    const lines = [];
+    lines.push('Voweluable #' + displayGameNumber(r.hn));
+    lines.push(bar);
+    let stat = '🏆 ' + Math.round(r.score).toLocaleString('en-US') + ' pts';
+    if (r.wordCount) stat += ' · ' + r.wordCount + ' words';
+    if (r.rank) stat += ' · #' + r.rank;
+    lines.push(stat);
     if (r.streak >= 1){
-      scoreLine += ' | 🔥 ' + r.streak + '-day streak';
+      lines.push('🔥 ' + r.streak + '-day streak');
     }
-    const lines = [
-      scoreLine
-    ];
-    if (typeof r.leftoverCash === 'number'){
-      lines.push('💰 $' + r.leftoverCash.toFixed(2) + ' left over');
-    }
-    lines.push('Voweluable #' + displayGameNumber(r.hn) + ' → play at voweluable.com');
+    lines.push('Can you beat it? voweluable.com');
     return lines.join('\n');
   }
 
