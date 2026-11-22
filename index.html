@@ -991,6 +991,25 @@
     font-size:9.5px; letter-spacing:0.09em; text-transform:uppercase;
     color:#e9c45a; margin-top:2px; text-shadow:0 1px 0 rgba(0,0,0,0.4);
   }
+
+  /* ===== Wordle-style share: prominent result + grid preview ===== */
+  .share-preview{
+    background:linear-gradient(180deg, rgba(227,178,60,0.14), rgba(227,178,60,0.04));
+    border:1px solid rgba(227,178,60,0.45);
+    border-radius:12px; padding:12px 14px; margin:12px 0 2px; text-align:center;
+    box-shadow:inset 0 1px 0 rgba(245,239,224,0.08);
+  }
+  .sp-title{font-size:11px; color:var(--muted); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:7px;}
+  .sp-bar{font-size:22px; letter-spacing:3px; line-height:1.2;}
+  .sp-stat{font-family:'JetBrains Mono',monospace; color:var(--gold); font-weight:700; margin-top:7px; font-size:14px;}
+  .share-cta{
+    font-size:16px !important; padding:14px 18px !important;
+    box-shadow:0 5px 0 #9a7220, 0 9px 18px rgba(11,18,32,0.38), inset 0 1px 0 rgba(255,255,255,0.6) !important;
+    animation:sharePulse 1.5s ease 0.25s 2;
+  }
+  .share-cta:active{ box-shadow:0 1px 0 #9a7220, 0 3px 8px rgba(11,18,32,0.3) !important; }
+  @keyframes sharePulse{0%,100%{transform:scale(1);}50%{transform:scale(1.035);}}
+  @media (prefers-reduced-motion: reduce){ .share-cta{ animation:none; } }
   /* Founding Supporter CTA card */
   .founding-card{
     background:linear-gradient(180deg,#1b2840 0%, #111a2c 100%);
@@ -1323,7 +1342,8 @@
   <div class="result-note" id="officialResultPanel" style="display:none; margin-top:14px;">
     <span id="officialResultText"></span>
     <div id="streakCallout" style="display:none; margin-top:8px; color:var(--orange); font-weight:700; font-size:14px;"></div>
-    <button class="acct-btn" id="shareResultBtn" style="display:none; width:100%; margin-top:12px;">📋 Share your result</button>
+    <div id="sharePreview" class="share-preview" style="display:none;"></div>
+    <button class="acct-btn share-cta" id="shareResultBtn" style="display:none; width:100%; margin-top:12px;">📋 Share your result</button>
     <button class="acct-btn" id="fbShareBtn" style="display:none; width:100%; margin-top:8px;">📘 Share to Facebook</button>
     <button class="acct-btn" id="challengeBtn" style="display:none; width:100%; margin-top:8px;">⚔️ Challenge a friend</button>
     <div class="shop-hint" id="challengeCopied" style="display:none; margin-top:6px;"></div>
@@ -2825,6 +2845,17 @@
     document.getElementById('fbShareBtn').style.display = 'block';
     document.getElementById('challengeBtn').style.display = 'block';
     document.getElementById('backToBoardBtn').style.display = 'block';
+    // Wordle-style visual share preview (grid + score) so every official finish ends with an obvious share moment
+    try {
+      const sp = document.getElementById('sharePreview');
+      if (sp){
+        const L = buildShareText().split('\n');
+        sp.innerHTML = '<div class="sp-title">Your result — share it 👇</div>' +
+          '<div class="sp-bar">' + (L[1] || '') + '</div>' +
+          '<div class="sp-stat">' + (L[2] || '') + '</div>';
+        sp.style.display = 'block';
+      }
+    } catch(e){}
     if (activeChallenge && activeChallenge.hn === hn) showChallengeOutcome(savedScore);
 
     await renderLeaderboard(hn);
