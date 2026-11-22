@@ -1334,7 +1334,7 @@
   const FOUNDING_LIMIT = 20;
   const FOUNDING_PAYMENT_URL = 'PAYMENT_LINK';   // <- paste your $5 payment link here
   const SUPPORTERS = [
-    // 'Jakesterny59',
+    'Brian',
   ];
   const SUPPORTER_SET = new Set(SUPPORTERS.map(s => String(s).trim().toLowerCase()));
   function escHtml(s){ return String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
@@ -1347,6 +1347,10 @@
       '<svg class="founder-badge" aria-hidden="true"><use href="#founderBadge"></use></svg>' + safe + '</span>';
   }
   (function renderFoundingCard(){
+    const card = document.getElementById('foundingCard');
+    // Until a real payment link is set, hide the sales card so players never hit a dead button.
+    // (The gold badge still works for anyone added to SUPPORTERS above.)
+    if (card && (!FOUNDING_PAYMENT_URL || FOUNDING_PAYMENT_URL === 'PAYMENT_LINK')){ card.style.display = 'none'; return; }
     const claimed = Math.min(SUPPORTERS.length, FOUNDING_LIMIT);
     const left = Math.max(0, FOUNDING_LIMIT - claimed);
     const pct = Math.round((claimed / FOUNDING_LIMIT) * 100);
