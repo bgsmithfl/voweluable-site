@@ -1,7 +1,7 @@
 // Voweluable service worker
 // Bump CACHE_NAME on every deploy that changes index.html or any cached asset,
 // so returning players get the new version instead of a stale cached one.
-const CACHE_NAME = 'voweluable-v18';
+const CACHE_NAME = 'voweluable-v19';
 
 // Static assets that rarely change — safe to serve cache-first for speed.
 const APP_SHELL = [
@@ -13,7 +13,8 @@ const APP_SHELL = [
   '/favicon-180.png',
   '/favicon-192.png',
   '/favicon-512.png',
-  '/social-share.png'
+  '/social-share.png',
+  '/board-tutorial.png'
 ];
 
 self.addEventListener('install', (event) => {
