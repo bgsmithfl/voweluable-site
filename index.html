@@ -962,6 +962,35 @@
   /* Founding Supporter badge on the leaderboard */
   .lb-supporter{color:var(--gold); font-weight:700; white-space:nowrap;}
   .founder-badge{width:1.35em; height:1.35em; vertical-align:-0.22em; margin-right:2px;}
+
+  /* ===== Leaderboard gold glam (toward the Founding Supporter mockup) ===== */
+  .leaderboard-panel{
+    border:2px solid rgba(227,178,60,0.55);
+    box-shadow:0 12px 32px rgba(11,18,32,0.40), inset 0 1px 0 rgba(245,239,224,0.08), 0 0 36px rgba(227,178,60,0.12);
+  }
+  .leaderboard-panel h2{
+    color:#f3cb67;
+    background:linear-gradient(180deg,#fff6d5 0%, #f3cb67 42%, #e3b23c 62%, #b9892a 100%);
+    -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
+    text-shadow:none;
+    filter:drop-shadow(0 1px 1px rgba(0,0,0,0.5));
+  }
+  .lb-table th{ color:#e9c45a; font-weight:700; border-bottom-color:rgba(227,178,60,0.35); text-shadow:0 1px 0 rgba(0,0,0,0.4); }
+  /* Founder row — glowing gold highlight (any row whose name carries the badge) */
+  .lb-table tr:has(.lb-supporter) td{
+    background:linear-gradient(180deg, rgba(227,178,60,0.22) 0%, rgba(227,178,60,0.07) 100%);
+    border-top:1px solid rgba(243,203,103,0.55);
+    border-bottom:1px solid rgba(243,203,103,0.55);
+    box-shadow:inset 0 0 16px rgba(227,178,60,0.15);
+  }
+  .lb-table tr:has(.lb-supporter) td:first-child{ border-left:2px solid rgba(243,203,103,0.65); }
+  .lb-table tr:has(.lb-supporter) td:last-child{ border-right:2px solid rgba(243,203,103,0.65); }
+  .lb-table tr:has(.lb-supporter) .founder-badge{ width:1.55em; height:1.55em; }
+  .founder-caption{
+    font-family:'Space Grotesk',sans-serif; font-style:italic; font-weight:700;
+    font-size:9.5px; letter-spacing:0.09em; text-transform:uppercase;
+    color:#e9c45a; margin-top:2px; text-shadow:0 1px 0 rgba(0,0,0,0.4);
+  }
   /* Founding Supporter CTA card */
   .founding-card{
     background:linear-gradient(180deg,#1b2840 0%, #111a2c 100%);
@@ -988,16 +1017,10 @@
   <linearGradient id="founderGold" x1="0" y1="0" x2="0" y2="1">
     <stop offset="0" stop-color="#f6d675"/><stop offset="0.55" stop-color="#e3b23c"/><stop offset="1" stop-color="#bf8f2b"/>
   </linearGradient>
-  <symbol id="founderBadge" viewBox="0 0 26 22">
-    <g fill="url(#founderGold)">
-      <ellipse cx="4.8" cy="15" rx="2.5" ry="1.0" transform="rotate(-35 4.8 15)"/>
-      <ellipse cx="4.0" cy="11" rx="2.6" ry="1.0" transform="rotate(-10 4.0 11)"/>
-      <ellipse cx="5.0" cy="7"  rx="2.3" ry="0.95" transform="rotate(16 5.0 7)"/>
-      <ellipse cx="21.2" cy="15" rx="2.5" ry="1.0" transform="rotate(35 21.2 15)"/>
-      <ellipse cx="22.0" cy="11" rx="2.6" ry="1.0" transform="rotate(10 22.0 11)"/>
-      <ellipse cx="21.0" cy="7"  rx="2.3" ry="0.95" transform="rotate(-16 21.0 7)"/>
-    </g>
-    <text x="13" y="16.3" text-anchor="middle" font-family="'Space Grotesk',sans-serif" font-weight="800" font-size="17" fill="url(#founderGold)">$</text>
+  <symbol id="founderBadge" viewBox="0 0 24 24">
+    <rect x="2.5" y="2.5" width="19" height="19" rx="5.5" fill="url(#founderGold)" stroke="#8a6a1e" stroke-width="1"/>
+    <rect x="4.2" y="4" width="15.6" height="6.5" rx="3" fill="rgba(255,255,255,0.33)"/>
+    <text x="12" y="17.6" text-anchor="middle" font-family="'Space Grotesk',sans-serif" font-weight="800" font-size="15" fill="#0b0b0b">$</text>
   </symbol>
 </defs></svg>
 
@@ -1346,6 +1369,7 @@
     return '<span class="lb-supporter" title="Founding Player">' +
       '<svg class="founder-badge" aria-hidden="true"><use href="#founderBadge"></use></svg>' + safe + '</span>';
   }
+  function isFounder(name){ return !!(name && SUPPORTER_SET.has(String(name).trim().toLowerCase())); }
   (function renderFoundingCard(){
     const card = document.getElementById('foundingCard');
     // Until a real payment link is set, hide the sales card so players never hit a dead button.
@@ -2582,7 +2606,7 @@
         const isMe = account && row.user_id === account.id;
         const streak = row.current_streak || 0;
         return '<tr' + (isMe ? ' class="me"' : '') + '><td class="lb-rank">' + (i + 1) + '</td><td>' +
-          renderName(row.name) + '</td><td class="lb-streak">' + (streak > 0 ? '🔥 ' + streak : '—') + '</td><td class="lb-score">$' +
+          renderName(row.name) + (isFounder(row.name) ? '<div class="founder-caption">Founding Supporter</div>' : '') + '</td><td class="lb-streak">' + (streak > 0 ? '🔥 ' + streak : '—') + '</td><td class="lb-score">$' +
           Number(row.savings).toFixed(2) + '</td></tr>';
       }).join('');
       if (account && !data.some(r => r.user_id === account.id)){
@@ -2614,7 +2638,7 @@
         const alive = (row.last_played_hand || 0) >= hn - 1;
         const cur = alive ? (row.current_streak || 0) : 0;
         return '<tr' + (isMe ? ' class="me"' : '') + '><td class="lb-rank">' + (i + 1) + '</td><td>' +
-          renderName(row.name) + '</td><td class="lb-streak">' + (cur > 0 ? '🔥 ' + cur : '—') + '</td><td class="lb-score">best: ' +
+          renderName(row.name) + (isFounder(row.name) ? '<div class="founder-caption">Founding Supporter</div>' : '') + '</td><td class="lb-streak">' + (cur > 0 ? '🔥 ' + cur : '—') + '</td><td class="lb-score">best: ' +
           (row.longest_streak || 0) + '</td></tr>';
       }).join('');
       if (account && !data.some(r => r.user_id === account.id)){
@@ -2643,7 +2667,7 @@
       const isMe = account && row.user_id === account.id;
       const streak = row.current_streak || 0;
       return '<tr' + (isMe ? ' class="me"' : '') + '><td class="lb-rank">' + (i + 1) + '</td><td>' +
-        renderName(row.name) + '</td><td class="lb-streak">' + (streak > 0 ? '🔥 ' + streak : '—') + '</td><td class="lb-score">' +
+        renderName(row.name) + (isFounder(row.name) ? '<div class="founder-caption">Founding Supporter</div>' : '') + '</td><td class="lb-streak">' + (streak > 0 ? '🔥 ' + streak : '—') + '</td><td class="lb-score">' +
         Number(row.combined_score).toFixed(0) + ' pts</td></tr>';
     }).join('');
     if (account && !data.some(r => r.user_id === account.id)){
