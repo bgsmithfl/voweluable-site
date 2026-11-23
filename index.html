@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Voweluable — the daily word game where vowels cost money</title>
+<title>Voweluable — the daily word game where vowels cost fake money</title>
 <meta name="description" content="Voweluable is a free daily word game with a twist: every vowel costs play money. You get 3 free letters and a $10 budget to buy vowels — spend smart, build the highest-scoring words in 3 minutes, bank what you don't spend, and top the daily leaderboard. New puzzle every midnight.">
 <link rel="canonical" href="https://voweluable.com/">
-<meta property="og:title" content="Voweluable — the daily word game where vowels cost money">
+<meta property="og:title" content="Voweluable — the daily word game where vowels cost fake money">
 <meta property="og:description" content="A free daily word game with a twist: vowels cost play money. Buy them from a $10 budget, build your words, beat the 3-minute clock. New board every midnight, one champion crowned.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://voweluable.com/">
@@ -14,7 +14,7 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Voweluable — the daily word game where vowels cost money">
+<meta name="twitter:title" content="Voweluable — the daily word game where vowels cost fake money">
 <meta name="twitter:description" content="A free daily word game with a twist: vowels cost play money. Buy them from a $10 budget, build your words, beat the clock. New board every midnight.">
 <meta name="twitter:image" content="https://voweluable.com/social-share.png">
 <link rel="icon" href="favicon.ico" sizes="any">
@@ -31,7 +31,7 @@
   "@context": "https://schema.org",
   "@type": "WebApplication",
   "name": "Voweluable",
-  "alternateName": "Voweluable - the word game where vowels cost money",
+  "alternateName": "Voweluable - the word game where vowels cost fake money",
   "url": "https://voweluable.com/",
   "description": "Voweluable is a free daily word game with a twist: every vowel costs play money. You get 3 free letters and a $10 budget to buy vowels, then build the highest-scoring words you can in 3 minutes and bank what you don't spend. A new board every midnight, one champion crowned.",
   "applicationCategory": "GameApplication",
@@ -56,15 +56,15 @@
   :root{
     --ink:#0B1220;
     --ink-light:#131C2E;
-    --gold:#E3B23C;
-    --gold-dark:#B8862A;
-    --silver:#C7CDD4;
-    --silver-dark:#8D96A1;
-    --mint:#34C77B;
-    --coral:#E85D4C;
-    --orange:#F2914B;
-    --cream:#F5EFE0;
-    --muted:#7C8AA5;
+    --gold:#F5BE2E;
+    --gold-dark:#D39A24;
+    --silver:#D9DFE6;
+    --silver-dark:#9BA6B3;
+    --mint:#2FD95E;
+    --coral:#FF6350;
+    --orange:#FF963A;
+    --cream:#FAF4E6;
+    --muted:#8E9CB8;
   }
   *{box-sizing:border-box;}
   body{
@@ -396,7 +396,7 @@
   .tile.tile-used:active{transform:scale(0.94);}
   .tile.consonant{background:linear-gradient(180deg,#ffb55d 0%, #f2914b 52%, #db7730 100%); color:#2a1708; border:none;}
   .tile.vowel-auto{background:linear-gradient(180deg,#ffffff 0%, #efe6ce 100%); color:#23231e; border:2px dashed rgba(0,0,0,0.5);}
-  .tile.vowel-bought{background:linear-gradient(180deg,#60e394 0%, #34c77b 52%, #1fa061 100%); color:#063821; border:none;}
+  .tile.vowel-bought{background:linear-gradient(180deg,#5cf07a 0%, #2fd95e 52%, #17a847 100%); color:#053018; border:none;}
   .tile.blank{
     background:none;
     border:2px dashed rgba(245,239,224,0.3);
@@ -937,8 +937,8 @@
   #playPracticeBtn:active, #lockedPracticeBtn:active{ transform:translateY(3px); box-shadow:0 1px 0 #8d96a1, 0 3px 8px rgba(11,18,32,0.25); }
   /* Glossy green submit button */
   .submit-btn{
-    background:linear-gradient(180deg,#5fe293 0%, #34c77b 52%, #1fa061 100%);
-    box-shadow:0 4px 0 #15774a, 0 7px 14px rgba(11,18,32,0.30), inset 0 1px 0 rgba(255,255,255,0.45);
+    background:linear-gradient(180deg,#5cf07a 0%, #2fd95e 52%, #17a847 100%);
+    box-shadow:0 4px 0 #116a3f, 0 7px 14px rgba(11,18,32,0.30), inset 0 1px 0 rgba(255,255,255,0.45);
     transition:transform 0.08s ease, box-shadow 0.08s ease;
   }
   .submit-btn:active{ transform:translateY(3px); box-shadow:0 1px 0 #15774a, 0 3px 8px rgba(11,18,32,0.30), inset 0 1px 0 rgba(255,255,255,0.4); }
@@ -1045,7 +1045,7 @@
 
 <div class="header-bar">
 <header>
-  <img class="brand-banner" src="banner.png" alt="Voweluable — a new free daily word game where vowels cost money">
+  <img class="brand-banner" src="banner.png" alt="Voweluable — where vowels cost fake money">
 </header>
 <div class="header-meta">
   <span id="hdrDate"></span>
@@ -1345,6 +1345,7 @@
     <div id="sharePreview" class="share-preview" style="display:none;"></div>
     <button class="acct-btn share-cta" id="shareResultBtn" style="display:none; width:100%; margin-top:12px;">📋 Share your result</button>
     <button class="acct-btn" id="fbShareBtn" style="display:none; width:100%; margin-top:8px;">📘 Share to Facebook</button>
+    <button class="acct-btn" id="shareImageBtn" style="display:none; width:100%; margin-top:8px;">🖼️ Share result image</button>
     <button class="acct-btn" id="challengeBtn" style="display:none; width:100%; margin-top:8px;">⚔️ Challenge a friend</button>
     <div class="shop-hint" id="challengeCopied" style="display:none; margin-top:6px;"></div>
     <button class="acct-btn ghost" id="backToBoardBtn" style="display:none; width:100%; margin-top:10px;">🏆 Back to the leaderboard</button>
@@ -2513,13 +2514,15 @@
   function buildShareText(){
     if (!lastOfficialResult) return '';
     const r = lastOfficialResult;
-    // Spoiler-free "budget bar" — Voweluable's visual signature.
-    // Gold = Vowel Bucks spent on vowels, green = banked. Reveals no words.
-    const leftover = (typeof r.leftoverCash === 'number') ? r.leftoverCash : 0;
-    let spentSegs = Math.round(Math.max(0, 10 - leftover));
-    if (spentSegs < 0) spentSegs = 0;
-    if (spentSegs > 10) spentSegs = 10;
-    const bar = '🟨'.repeat(spentSegs) + '🟩'.repeat(10 - spentSegs);
+    // Spoiler-free board makeup — the 7 tiles you played, by color.
+    // 🟧 consonant · ⬜ auto vowel · 🟩 purchased vowel. Reveals no words.
+    let bar = r.tiles || r.tileEmojisOverride || '';
+    if (!bar){
+      // Fallback for older results with no stored tiles: the budget bar.
+      const leftover = (typeof r.leftoverCash === 'number') ? r.leftoverCash : 0;
+      const spentSegs = Math.max(0, Math.min(10, Math.round(10 - leftover)));
+      bar = '🟨'.repeat(spentSegs) + '🟩'.repeat(10 - spentSegs);
+    }
     const lines = [];
     lines.push('Voweluable #' + displayGameNumber(r.hn));
     lines.push(bar);
@@ -2839,10 +2842,12 @@
       wordCount: foundWords.length,
       maxWordLen: foundWords.length ? Math.max(...foundWords.map(w => w.word.length)) : 0,
       streak: account.currentStreak || 0,
-      leftoverCash: leftoverCash
+      leftoverCash: leftoverCash,
+      tiles: getTileTypeEmojis()
     };
     document.getElementById('shareResultBtn').style.display = 'block';
     document.getElementById('fbShareBtn').style.display = 'block';
+    document.getElementById('shareImageBtn').style.display = 'block';
     document.getElementById('challengeBtn').style.display = 'block';
     document.getElementById('backToBoardBtn').style.display = 'block';
     // Wordle-style visual share preview (grid + score) so every official finish ends with an obvious share moment
@@ -2942,34 +2947,164 @@
     await shareResultViaText(btn, originalLabel);
   });
 
-  async function shareResultToFacebook(btn, originalLabel){
-    // Open the Facebook share dialog synchronously — before ANY await —
-    // or Safari/iOS silently blocks the new tab (same lesson as the
-    // share-before-playing button).
+  // Copy text reliably within a user gesture (iOS blocks async clipboard
+  // once focus leaves the page, so do a synchronous execCommand copy first).
+  function copyForShare(text){
+    let ok = false;
+    try {
+      const ta = document.createElement('textarea');
+      ta.value = text; ta.setAttribute('readonly','');
+      ta.style.position = 'fixed'; ta.style.top = '-9999px'; ta.style.left = '-9999px';
+      document.body.appendChild(ta);
+      ta.focus(); ta.select();
+      try { ta.setSelectionRange(0, text.length); } catch(e){}
+      ok = document.execCommand('copy');
+      document.body.removeChild(ta);
+    } catch(e){ ok = false; }
+    try { if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).catch(()=>{}); } catch(e){}
+    return ok;
+  }
+
+  function shareResultToFacebook(btn, originalLabel){
+    const text = buildShareText();
+    // Copy the result FIRST, synchronously, while the page still has focus —
+    // otherwise iOS blocks the clipboard write once the Facebook tab opens.
+    let copied = false;
+    if (text) copied = copyForShare(text);
+    // THEN open the Facebook dialog (still inside the user gesture, no await).
     window.open(
       'https://www.facebook.com/sharer/sharer.php?u=' +
         encodeURIComponent('https://voweluable.com'),
       '_blank'
     );
-
-    const text = buildShareText();
-    if (!text){
-      btn.textContent = 'Dialog opened — add your score by hand';
-      setTimeout(() => { btn.textContent = originalLabel; }, 3500);
-      return;
-    }
-    try{
-      await navigator.clipboard.writeText(text);
-      btn.textContent = '✅ Score copied — paste it into your post!';
-    } catch(e){
-      btn.textContent = 'Dialog opened — copy your score above';
-    }
+    btn.textContent = text
+      ? (copied ? '✅ Result copied — paste it into your post!' : 'Dialog opened — copy your result above')
+      : 'Dialog opened — add your score by hand';
     setTimeout(() => { btn.textContent = originalLabel; }, 3500);
   }
 
   document.getElementById('fbShareBtn').addEventListener('click', async ()=>{
     const btn = document.getElementById('fbShareBtn');
     await shareResultToFacebook(btn, '📘 Share to Facebook');
+  });
+
+  // ---- Shareable result IMAGE (so the result shows on Facebook as a picture) ----
+  function rrect(ctx, x, y, w, h, r){
+    ctx.beginPath();
+    ctx.moveTo(x + r, y);
+    ctx.arcTo(x + w, y, x + w, y + h, r);
+    ctx.arcTo(x + w, y + h, x, y + h, r);
+    ctx.arcTo(x, y + h, x, y, r);
+    ctx.arcTo(x, y, x + w, y, r);
+    ctx.closePath();
+  }
+  function renderResultImage(){
+    const r = lastOfficialResult || {};
+    const c = document.createElement('canvas');
+    c.width = 1080; c.height = 1080;
+    const x = c.getContext('2d');
+    x.fillStyle = '#0b1220'; x.fillRect(0, 0, 1080, 1080);
+    const g = x.createRadialGradient(540, 430, 60, 540, 430, 580);
+    g.addColorStop(0, 'rgba(227,178,60,0.22)'); g.addColorStop(1, 'rgba(227,178,60,0)');
+    x.fillStyle = g; x.fillRect(0, 0, 1080, 1080);
+    // wordmark
+    x.textAlign = 'left';
+    x.font = '800 92px Arial, sans-serif';
+    const vowel = 'VOWEL', uable = 'UABLE';
+    const wV = x.measureText(vowel).width, wU = x.measureText(uable).width;
+    const sx = 540 - (wV + wU) / 2;
+    x.fillStyle = '#F5EFE0'; x.fillText(vowel, sx, 165);
+    x.fillStyle = '#E3B23C'; x.fillText(uable, sx + wV, 165);
+    x.textAlign = 'center';
+    x.font = '700 34px monospace'; x.fillStyle = '#9aa4b2';
+    const num = (typeof displayGameNumber === 'function') ? displayGameNumber(r.hn) : (r.hn || '');
+    x.fillText('DAILY  #' + num, 540, 222);
+    // Board makeup: the 7 tiles played, by color (🟧 consonant · ⬜ auto · 🟩 purchased vowel)
+    const COL = { '🟧': '#F2914B', '⬜': '#F5EFE0', '🟩': '#34C77B' };
+    const emo = r.tiles || r.tileEmojisOverride || '';
+    let tiles = emo ? Array.from(emo) : [];
+    if (!tiles.length){
+      const leftover = (typeof r.leftoverCash === 'number') ? r.leftoverCash : 0;
+      const spent = Math.max(0, Math.min(10, Math.round(10 - leftover)));
+      for (let i = 0; i < 10; i++) tiles.push(i < spent ? '🟨' : '🟩');
+      COL['🟨'] = '#E3B23C';
+    }
+    const n = tiles.length, sq = (n > 7 ? 80 : 104), gap = 16, totalW = n * sq + (n - 1) * gap, gx = 540 - totalW / 2, gy = 300;
+    for (let i = 0; i < n; i++){
+      const cx = gx + i * (sq + gap);
+      x.fillStyle = COL[tiles[i]] || '#F2914B';
+      rrect(x, cx, gy, sq, sq, 18); x.fill();
+      if (tiles[i] === '⬜'){
+        x.lineWidth = 3; x.strokeStyle = 'rgba(0,0,0,0.45)'; x.setLineDash([9, 7]);
+        rrect(x, cx + 5, gy + 5, sq - 10, sq - 10, 13); x.stroke(); x.setLineDash([]);
+      }
+      x.fillStyle = 'rgba(255,255,255,0.28)';
+      rrect(x, cx + 7, gy + 7, sq - 14, (sq - 14) * 0.42, 9); x.fill();
+    }
+    // legend (only when showing real tiles)
+    if (emo){
+      const ly = gy + sq + 48;
+      x.font = '700 24px Arial, sans-serif'; x.textAlign = 'left';
+      const items = [['#F2914B', 'CONSONANT'], ['#F5EFE0', 'AUTO VOWEL'], ['#34C77B', 'VOWEL']];
+      const boxW = 26, pad = 30;
+      const widths = items.map(it => boxW + 10 + x.measureText(it[1]).width);
+      const tot = widths.reduce((a, b) => a + b, 0) + pad * (items.length - 1);
+      let lx = 540 - tot / 2;
+      items.forEach((it, idx) => {
+        x.fillStyle = it[0]; rrect(x, lx, ly - 21, boxW, boxW, 6); x.fill();
+        x.fillStyle = '#c7cdd4'; x.fillText(it[1], lx + boxW + 10, ly);
+        lx += widths[idx] + pad;
+      });
+      x.textAlign = 'center';
+    }
+    // score
+    x.font = '800 150px Arial, sans-serif'; x.fillStyle = '#E3B23C';
+    x.fillText(Math.round(r.score || 0).toLocaleString('en-US') + ' pts', 540, 600);
+    // sub
+    x.font = '700 44px Arial, sans-serif'; x.fillStyle = '#F5EFE0';
+    let sub = (r.wordCount ? r.wordCount + ' words' : '') + ((r.wordCount && r.rank) ? '    ·    ' : '') + (r.rank ? 'Rank #' + r.rank : '');
+    if (sub) x.fillText(sub, 540, 684);
+    // streak
+    if (r.streak >= 1){
+      x.font = '800 48px Arial, sans-serif'; x.fillStyle = '#F2914B';
+      x.fillText(r.streak + '-DAY STREAK', 540, 772);
+    }
+    // footer
+    x.font = '700 48px Arial, sans-serif'; x.fillStyle = '#34C77B';
+    x.fillText('Can you beat it?', 540, 930);
+    x.font = '800 58px Arial, sans-serif'; x.fillStyle = '#F5EFE0';
+    x.fillText('voweluable.com', 540, 1008);
+    return c;
+  }
+  document.getElementById('shareImageBtn').addEventListener('click', async ()=>{
+    const btn = document.getElementById('shareImageBtn');
+    const orig = '🖼️ Share result image';
+    if (!lastOfficialResult){
+      const ok = await loadOfficialResultFromDb();
+      if (!ok){ btn.textContent = "Couldn't load your result — try again"; setTimeout(()=>{ btn.textContent = orig; }, 2500); return; }
+    }
+    try {
+      const canvas = renderResultImage();
+      const dataUrl = canvas.toDataURL('image/png');
+      // Build a File synchronously so navigator.share stays inside the user gesture.
+      const bin = atob(dataUrl.split(',')[1]);
+      const arr = new Uint8Array(bin.length);
+      for (let i = 0; i < bin.length; i++) arr[i] = bin.charCodeAt(i);
+      const file = new File([arr], 'voweluable-result.png', { type: 'image/png' });
+      if (navigator.canShare && navigator.canShare({ files: [file] })){
+        await navigator.share({ files: [file], title: 'Voweluable', text: buildShareText() });
+        return;
+      }
+      // Desktop / unsupported: download the image to attach manually.
+      const a = document.createElement('a');
+      a.href = dataUrl; a.download = 'voweluable-result.png';
+      document.body.appendChild(a); a.click(); a.remove();
+      btn.textContent = '✅ Image saved — attach it to your post';
+      setTimeout(()=>{ btn.textContent = orig; }, 3500);
+    } catch(e){
+      btn.textContent = "Couldn't make image — try again";
+      setTimeout(()=>{ btn.textContent = orig; }, 2500);
+    }
   });
 
   document.getElementById('lockedFbShareBtn').addEventListener('click', async ()=>{
