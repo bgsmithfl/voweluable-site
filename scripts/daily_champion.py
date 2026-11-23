@@ -62,7 +62,7 @@ except Exception:
     d.text((wx,96),"VOWEL",font=font(64),fill=CREAM,anchor="lm")
     w1=d.textlength("VOWEL",font=font(64))
     d.text((wx+w1,96),"UABLE",font=font(64),fill=GOLD,anchor="lm")
-    d.text((wx,150),"A NEW FREE DAILY WORD GAME, EVERY MIDNIGHT",font=font(21),fill=MINT,anchor="lm")
+    d.text((wx,150),"WHERE VOWELS COST FAKE MONEY",font=font(21),fill=MINT,anchor="lm")
 cx,cy=W//2,348
 if kind=="record":
     for k in range(24):
