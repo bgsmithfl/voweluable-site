@@ -69,8 +69,8 @@
   *{box-sizing:border-box;}
   body{
     margin:0;
-    background:#FFFFFF url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='280' height='280'><g fill='%23131C2E' fill-opacity='0.05' font-family='Arial,sans-serif' font-weight='bold'><text x='40' y='70' font-size='44' transform='rotate(-14 40 70)'>$</text><text x='190' y='150' font-size='30' transform='rotate(10 190 150)'>$</text><text x='90' y='240' font-size='36' transform='rotate(-6 90 240)'>$</text></g></svg>") repeat;
-    color:var(--ink);
+    background:#000000 url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='280' height='280'><g fill='%23F5BE2E' fill-opacity='0.04' font-family='Arial,sans-serif' font-weight='bold'><text x='40' y='70' font-size='44' transform='rotate(-14 40 70)'>$</text><text x='190' y='150' font-size='30' transform='rotate(10 190 150)'>$</text><text x='90' y='240' font-size='36' transform='rotate(-6 90 240)'>$</text></g></svg>") repeat;
+    color:#E9EDF4;
     font-family:'Inter',sans-serif;
     padding:env(safe-area-inset-top) 0 60px;
     overflow-x:hidden;
@@ -627,14 +627,14 @@
   body.in-game #gameArea{
     position:fixed; inset:0; z-index:1000;
     overflow-y:auto; -webkit-overflow-scrolling:touch;
-    background:#FFFFFF;
+    background:#000000;
     padding:12px 16px 70px;
   }
   .game-inner{ max-width:650px; margin:0 auto; }
   .game-topbar{ display:none; justify-content:space-between; align-items:center; margin-bottom:10px; }
   body.in-game .game-topbar{ display:flex; }
-  .game-topbar .gt-title{ font-weight:700; color:var(--ink); font-size:13px; letter-spacing:1.5px; }
-  .game-close{ background:#fff; border:1px solid #c9d1e0; border-radius:999px; padding:6px 14px; font-weight:700; cursor:pointer; color:var(--ink); font-size:13px; }
+  .game-topbar .gt-title{ font-weight:700; color:var(--cream); font-size:13px; letter-spacing:1.5px; }
+  .game-close{ background:rgba(255,255,255,0.08); border:1px solid rgba(245,239,224,0.2); border-radius:999px; padding:6px 14px; font-weight:700; cursor:pointer; color:var(--cream); font-size:13px; }
   /* Challenge banner (arrival via a challenge link) */
   .challenge-banner{
     background:linear-gradient(90deg, rgba(232,120,60,0.14), rgba(232,120,60,0.05), rgba(232,120,60,0.14));
@@ -643,10 +643,10 @@
     padding:14px 18px;
     margin-bottom:20px;
     text-align:center;
-    color:var(--ink);
+    color:var(--cream);
     font-size:15px;
   }
-  .challenge-result{ margin:6px 0 10px; font-weight:700; color:var(--ink); text-align:center; }
+  .challenge-result{ margin:6px 0 10px; font-weight:700; color:var(--cream); text-align:center; }
   .challenge-result.win{ color:var(--mint); }
   .challenge-result.lose{ color:var(--orange); }
   .champ-banner{
